@@ -5,110 +5,163 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NZDWZDNM</title>
+    <title>讓一切隨風</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Exo:wght@900&display=swap');
-
-        * {
-            box-sizing: border-box;
-            padding: 0;
-            margin: 0;
+        body {
+            font-family: Montserrat, sans-serif;
+            font-weight: 900;
+            background: #fff;
         }
 
-        :root {
-            --color-1: #186cb8;
-            --color-2: #2a9a9f;
-            --color-3: #f1b211;
-            --color-4: #e83611;
-            --color-5: #f9002f;
+        body,
+        body * {
+            cursor: none;
         }
 
+        .shapes {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            background: #2128bd;
+            overflow: hidden;
+        }
 
-        .wrapper {
-            background: #000;
-            line-height: 1;
-            min-height: 100%;
-            display: grid;
-            place-items: center;
-            min-height: calc(100vh - 16px);
+        .shape {
+            will-change: transform;
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .shape.shape-1 {
+            background: #005ffe;
+            width: 650px;
+            height: 650px;
+            margin: -325px 0 0 -325px;
+        }
+
+        .shape.shape-2 {
+            background: #ffe5e3;
+            width: 440px;
+            height: 440px;
+            margin: -220px 0 0 -220px;
+        }
+
+        .shape.shape-3 {
+            background: #ffcc57;
+            width: 270px;
+            height: 270px;
+            margin: -135px 0 0 -135px;
+        }
+
+        .content {
+            top: 0;
+            left: 0;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            background: #fff;
+            mix-blend-mode: screen;
         }
 
         h1 {
-            font-family: "Exo", sans-serif;
-            font-size: 15vw;
-            font-weight: 900;
-            width: -webkit-min-content;
-            width: -moz-min-content;
-            width: min-content;
-            margin: auto;
-            text-transform: uppercase;
-            background: linear-gradient(219deg,
-                    var(--color-1) 19%,
-                    transparent 19%, transparent 20%,
-                    var(--color-2) 20%, var(--color-2) 39%,
-                    transparent 39%, transparent 40%,
-                    var(--color-3) 40%, var(--color-3) 59%,
-                    transparent 59%, transparent 60%,
-                    var(--color-4) 60%, var(--color-4) 79%,
-                    transparent 79%, transparent 80%,
-                    var(--color-5) 80%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        .container {
-            padding: 1.5rem;
+            font-size: 100px;
+            color: #000;
+            margin: 0;
             text-align: center;
-            background: radial-gradient(circle at 1.4% 1.4%, var(--color-1) .8%, transparent .8%),
-                radial-gradient(circle at 5.5% 3%, var(--color-2) .45%, transparent .45%),
-                radial-gradient(circle at 2.5% 3.5%, var(--color-3) .5%, transparent .5%),
-                radial-gradient(circle at 4.5% 1.2%, var(--color-4) .25%, transparent .25%),
-
-                radial-gradient(circle at 98% 98%, var(--color-1) .8%, transparent .8%),
-                radial-gradient(circle at 95% 95%, var(--color-2) .45%, transparent .45%),
-                radial-gradient(circle at 94.5% 97.5%, var(--color-3) .5%, transparent .5%),
-                radial-gradient(circle at 98.5% 95.5%, var(--color-4) .25%, transparent .25%);
-
-
         }
 
-        @media screen and (min-width: 768px) {
+        @media (min-width: 419px) {
             h1 {
-                font-size: 6.5rem;
+                font-size: 100px;
+                font-size: calc((0.0989119683 * 100vw + (58.5558852621px)));
             }
+        }
+
+        @media (min-width: 1430px) {
+            h1 {
+                font-size: 200px;
+            }
+        }
+
+        .cursor {
+            position: fixed;
+            background: #2128bd;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border-radius: 50%;
+            will-change: transform;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        ::-moz-selection {
+            color: #fff;
+            background: #2128bd;
+        }
+
+        ::selection {
+            color: #fff;
+            background: #2128bd;
         }
     </style>
 </head>
 
 <body>
-
-
-    <div class="wrapper">
-        <div class="container">
-            <h1></h1>
-        </div>
+    <div class="cursor"></div>
+    <div class="shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
     </div>
-
-    <script>
-        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
-        var quote = document.querySelector('h1');
-        httpRequest.open('GET', 'https://api.quotable.io/random?maxLength=50', true);//第二步：打开连接  将请求参数写在url中  ps:"./Ptest.php?name=test&nameone=testone"
-        httpRequest.send();//第三步：发送请求  将请求参数写在URL中
-        /**
-         * 获取数据后的处理程序
-         */
-        httpRequest.onreadystatechange = function () {
-            if (httpRequest.readyState == 4 && httpRequest.status == 200) {
-                var json = httpRequest.responseText;//获取到json字符串，还需解析
-                var resp = JSON.parse(json);//解析json字符串
-                quote.innerHTML = resp.content.slice(0, -1);
-            } else {
-                quote.innerHTML = "better late than never"
-            }
-        };
-    </script>
-
+    <div class="content">
+        <h1>Que Sera Sera</h1>
+    </div>
 </body>
+<script src="https://cdn.bootcdn.net/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+<script>
+    document.body.addEventListener("mousemove", evt => {
+        const mouseX = evt.clientX;
+        const mouseY = evt.clientY;
+
+        gsap.set(".cursor", {
+            x: mouseX,
+            y: mouseY
+        });
+
+
+        gsap.to(".shape", {
+            x: mouseX,
+            y: mouseY,
+            stagger: -0.1
+        });
+
+    });
+</script>
+<!-- <script>
+    var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+    var quote = document.querySelector('h1');
+    httpRequest.open('GET', 'https://api.quotable.io/random?maxLength=50', true);//第二步：打开连接  将请求参数写在url中  ps:"./Ptest.php?name=test&nameone=testone"
+    httpRequest.send();//第三步：发送请求  将请求参数写在URL中
+    /**
+     * 获取数据后的处理程序
+     */
+    httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+            var json = httpRequest.responseText;//获取到json字符串，还需解析
+            var resp = JSON.parse(json);//解析json字符串
+            quote.innerHTML = resp.content.slice(0, -1);
+        } else {
+            quote.innerHTML = "better late than never"
+        }
+    };
+</script> -->
 
 </html>
